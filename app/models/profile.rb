@@ -1,6 +1,4 @@
 class Profile < ActiveRecord::Base
-  attr_accessible :user_id, :first_name, :middle_name, :last_name, :degree_id, :academic_title_id, :email, :phone, :avatar
-  
   belongs_to :user
   belongs_to :degree
   belongs_to :academic_title

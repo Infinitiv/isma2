@@ -1,6 +1,4 @@
 class Division < ActiveRecord::Base
-  attr_accessible :name, :division_type_id, :address, :latitude, :longitude
-  
   belongs_to :division_type
   has_many :posts
   has_many :profiles, :through => :posts

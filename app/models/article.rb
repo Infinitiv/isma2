@@ -1,6 +1,4 @@
 class Article < ActiveRecord::Base
-  attr_accessible :user_id, :title, :content, :exp_date, :published, :fixed, :commentable, :division_id, :group_id, :article_type_id
-  
   belongs_to :user
   belongs_to :division
   belongs_to :group

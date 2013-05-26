@@ -1,6 +1,4 @@
 class Degree < ActiveRecord::Base
-  attr_accessible :name, :short_name
-  
   has_many :profiles
   has_many :users, :through => :profiles
   

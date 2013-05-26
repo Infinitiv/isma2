@@ -1,6 +1,4 @@
 class PostType < ActiveRecord::Base
-  attr_accessible :name
-  
   has_many :posts
   has_many :profiles, :through => :posts
   has_many :users, :through => :profiles

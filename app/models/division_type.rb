@@ -1,6 +1,4 @@
 class DivisionType < ActiveRecord::Base
-  attr_accessible :name
-  
   has_many :divisions
   has_many :posts, :through => :divisions
   has_many :profiles, :through => :posts

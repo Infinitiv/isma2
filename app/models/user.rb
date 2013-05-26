@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-  attr_accessible :login, :password, :password_confirmation
-  
   has_one :profile
   has_many :articles
   has_many :comments
