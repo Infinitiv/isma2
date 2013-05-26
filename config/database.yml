@@ -11,7 +11,7 @@
 development:
   adapter: mysql2
   encoding: utf8
-  database: isma2_development
+  database: isma
   pool: 5
   username: markovnin
   password: I8Ar|%@9}Ke?
@@ -23,7 +23,7 @@ development:
 test:
   adapter: mysql2
   encoding: utf8
-  database: isma2_test
+  database: isma
   pool: 5
   username: markovnin
   password: I8Ar|%@9}Ke?
@@ -32,7 +32,7 @@ test:
 production:
   adapter: mysql2
   encoding: utf8
-  database: isma2_production
+  database: isma
   pool: 5
   username: markovnin
   password: I8Ar|%@9}Ke?
