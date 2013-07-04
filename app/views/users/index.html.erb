@@ -1,1 +1,24 @@
-controller: 'users', action: 'index'
+<h1>Пользователи</h1>
+
+<%= link_to 'Добавить', new_user_path %><br />
+<table class='table'>
+  <tr>
+    <th>Имя пользователя</th>
+    <th>Действия</th>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr>
+    <td><%= link_to user.login, user %></td>
+    <td>      
+      <%= link_to(edit_user_path(user)) do %>
+        <i class="icon-pencil" title="Редактировать"></i>
+      <% end %>&nbsp
+      <%= link_to(user, confirm: 'Are you sure?', method: :delete) do %>
+        <i class="icon-remove" title="Удалить"></i>
+      <% end %>
+    </td>
+  </tr>
+<% end %>
+</table>
+

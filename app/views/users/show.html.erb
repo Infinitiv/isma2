@@ -1,1 +1,68 @@
-controller: 'users'. action: 'show'
+<div class="row-fluid">
+  <% if @articles.count > 0 %>
+  <section id="division_info" class="span8">
+    <%= link_to 'Новая статья', new_article_path %>
+    <%= render @articles.paginate(:page => params[:page], :per_page => 10) %>
+    <%= will_paginate @articles.paginate(:page => params[:page], :per_page => 10), :previous_label => "Назад", :next_label => "Вперед"  %>
+  </section>
+  <section id="articles" class="span4">
+  <% else %>
+  <section id="articles" class="span12">
+  <% end %>
+    <%= link_to(edit_user_path(@user)) do %>
+      <i class='icon-pencil' title='Редактировать'></i>
+    <% end %>&nbsp
+    <%= link_to(users_path) do %>
+      <i class='icon-arrow-left' title='Назад'></i>
+    <% end %>
+    <p>
+    <% if @user.profile.nil? %>
+      <%= form_for(@profile) do |f| %>
+	<div class="field">
+	  <%= f.label :first_name, 'Имя' %><br />
+	  <%= f.text_field :first_name %>
+	</div>
+	<div class="field">
+	  <%= f.label :middle_name, 'Отчество' %><br />
+	  <%= f.text_field :middle_name %>
+	</div>
+	<div class="field">
+	  <%= f.label :last_name, 'Фамилия' %><br />
+	  <%= f.text_field :last_name %>
+	</div>
+	<div class="actions">
+	  <%= f.submit %>
+	</div>
+      <% end %>
+    <% else %>
+      <strong>
+	<%= "#{@profile.first_name}"' '"#{@profile.middle_name}"' '"#{@profile.last_name}" %>
+      </strong>
+      <%= "- #{@profile.degree}, #{@profile.title}" %>
+    <% end %>
+    <% @user.posts.each do |p| %>
+      <p>
+      <%= link_to p.division.name, p.division %>
+      <%= "- #{p.name}" %>
+    <% end %>
+    <% if @user == current_user %>
+          <%= form_for(@post) do |f| %>
+	    <div class="field">
+	      <%= f.label :name %><br />
+	      <%= f.text_field :name %>
+	    </div>
+	    <div class="field">
+	      <%= f.label :division_id %><br />
+	      <%= f.select :division_id, options_for_select= @divisions.collect {|p| [t(p.name, :scope => [:divisions]), p.id] }, {:include_blank => ''} %>
+	    </div>
+	    <div class="field">
+	      <%= f.label :parent_id %><br />
+	      <%= f.select :parent_id, options_for_select= @posts.collect {|p| [t(p.name, :scope => [:posts]), p.id] }, {:include_blank => ''} %>
+	    </div>
+	    <div class="actions">
+	      <%= f.submit %>
+	    </div>
+	  <% end %>
+    <% end %>
+  </section>
+</div>

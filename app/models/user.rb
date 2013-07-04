@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
-  has_one :profile
+  has_one :profile, :dependent => :destroy
   has_many :articles
   has_many :comments
+  has_many :attachments
   has_many :group_users
   has_many :groups, :through => :group_users
   has_many :posts

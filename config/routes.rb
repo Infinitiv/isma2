@@ -1,5 +1,5 @@
 Isma2::Application.routes.draw do
-
+ 
   resources :articles do
     resources :comments, :attachments
   end
@@ -27,9 +27,9 @@ Isma2::Application.routes.draw do
 
   resources :divisions
 
-  resources :profiles
-
-  resources :users
+  resources :users do
+    resources :profiles
+  end
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
