@@ -17,8 +17,9 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(user_params)
-    @profile = @user.profile.new(params[:profile])
+    @profile = @user.build_profile(params[:profile])
     if @user.save
+      @user.group_users.create(group_id: 6, user_id: @user.id)
       redirect_to @user, notice: 'User was successfully created.'
     else
       render action: 'new'

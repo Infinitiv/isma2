@@ -1,0 +1,44 @@
+<h1>Список групп</h1>
+
+<table class='table'>
+  <tr>
+    <th>Название</th>
+    <th>Администратор</th>
+    <th>Модератор</th>
+    <th>Писатель</th>
+    <th>Читатель</th>
+    <th>Комментатор</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @groups.each do |group| %>
+  <tr>
+    <td><%= group.name %></td>
+    <td><%= group.administrator? ? "+" : "-" %></td>
+    <td><%= group.moderator? ? "+" : "-" %></td>
+    <td><%= group.writer? ? "+" : "-" %></td>
+    <td><%= group.reader? ? "+" : "-" %></td>
+    <td><%= group.commentator? ? "+" : "-" %></td>
+    <td><%= link_to 'Show', group %></td>
+    <td><%= link_to 'Edit', edit_group_path(group) %></td>
+    <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+  <% Group.where(parent_id: group.id).each do |child_group| %>
+    <tr>
+    <td>--<%= child_group.name %></td>
+    <td><%= child_group.administrator? ? "+" : "-" %></td>
+    <td><%= child_group.moderator? ? "+" : "-" %></td>
+    <td><%= child_group.writer? ? "+" : "-" %></td>
+    <td><%= child_group.reader? ? "+" : "-" %></td>
+    <td><%= child_group.commentator? ? "+" : "-" %></td>
+    <td><%= link_to 'Show', group %></td>
+    <td><%= link_to 'Edit', edit_group_path(group) %></td>
+    <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+  <% end %>
+<% end %>
+</table>
+<br />
+<%= link_to 'Добавить группу', new_group_path %>

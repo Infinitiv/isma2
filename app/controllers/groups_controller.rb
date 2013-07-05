@@ -11,6 +11,7 @@ class GroupsController < ApplicationController
   
   def new
     @group = Group.new
+    @groups = Group.order(:name).all
   end
   
   def create
@@ -37,7 +38,7 @@ class GroupsController < ApplicationController
   end
   
   private
-  def set_article
+  def set_group
     @group = Group.find(params[:id])
   end
 

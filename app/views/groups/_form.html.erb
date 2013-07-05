@@ -1,0 +1,67 @@
+<%= form_for(@group) do |f| %>
+  <% if @group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>
+
+      <ul>
+      <% @group.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label 'Название группы' %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label 'Родительская группа' %>
+    <%= f.select :parent_id, options_for_select= @groups.collect {|p| [t(p.name, :scope => [:groups]), p.id] }, {:include_blank => ''} %>
+  </div>
+<table class='table'>
+<tr>
+<td>
+    <%= f.label 'Сделать администратором?' %>
+</td>
+<td>
+    <%= f.check_box :administrator %>
+</td>
+</tr>
+<tr>
+<td>
+    <%= f.label 'Сделать модератором?' %>
+</td>
+<td>
+    <%= f.check_box :moderator %>
+</td>
+</tr>
+<tr>
+<td>
+    <%= f.label 'Разрешить писать?' %>
+</td>
+<td>
+    <%= f.check_box :writer %>
+</td>
+</tr>
+<tr>
+<td>
+    <%= f.label 'Разрешить читать?' %>
+</td>
+<td>
+    <%= f.check_box :reader %>
+</td>
+</tr>
+<tr>
+<td>
+    <%= f.label 'Разрешить комментировать?' %>
+</td>
+<td>
+    <%= f.check_box :commentator %>
+</td>
+</tr>
+</table>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
