@@ -38,14 +38,14 @@
       <strong>
 	<%= "#{@profile.first_name}"' '"#{@profile.middle_name}"' '"#{@profile.last_name}" %>
       </strong>
-      <%= "- #{@profile.degree}, #{@profile.title}" %>
+      <%= "- #{@profile.degree}, #{@profile.academic_title}" %>
     <% end %>
     <% @user.posts.each do |p| %>
       <p>
       <%= link_to p.division.name, p.division %>
       <%= "- #{p.name}" %>
     <% end %>
-    <% if @user == current_user %>
+    <% if @user == @current_user %>
           <%= form_for(@post) do |f| %>
 	    <div class="field">
 	      <%= f.label :name %><br />
