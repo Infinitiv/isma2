@@ -36,9 +36,10 @@
       <% end %>
     <% else %>
       <strong>
-	<%= "#{@profile.first_name}"' '"#{@profile.middle_name}"' '"#{@profile.last_name}" %>
+	<%= @profile.full_name %>
       </strong>
-      <%= "- #{@profile.degree}, #{@profile.academic_title}" %>
+      <%= "- #{@profile.degree.short_name}" if @profile.degree %>
+      <%= ", #{@profile.academic_title}" if @profile.academic_title %>
     <% end %>
     <% @user.posts.each do |p| %>
       <p>
