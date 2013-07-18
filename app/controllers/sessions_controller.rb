@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
   end
 
   def create
+    @latitude = 59
     user = User.find_by_login(params[:login])
     if user and user.authenticate(params[:password])
       session[:user_id] = user.id
