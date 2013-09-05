@@ -9,7 +9,7 @@
 
 <% @users.each do |user| %>
   <tr>
-    <td><%= link_to user.login, user %></td>
+    <td><%= link_to user.login, user_profiles_path(user.id) %></td>
     <td>      
       <%= link_to(edit_user_path(user)) do %>
         <i class="icon-pencil" title="Редактировать"></i>

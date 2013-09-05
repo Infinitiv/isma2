@@ -16,7 +16,7 @@
       <i class='icon-arrow-left' title='Назад'></i>
     <% end %>
     <p>
-    <% if @user.profile.nil? %>
+    <% if @profile %>
       <%= form_for(@profile) do |f| %>
 	<div class="field">
 	  <%= f.label :first_name, 'Имя' %><br />

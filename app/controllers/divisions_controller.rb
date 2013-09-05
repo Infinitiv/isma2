@@ -37,7 +37,7 @@ class DivisionsController < ApplicationController
   end
   
   private
-  def set_article
+  def set_division
     @division = Division.find(params[:id])
   end
 

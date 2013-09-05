@@ -1,5 +1,5 @@
 class ProfilesController < UsersController
-  before_action :set_article, only: [:show, :edit, :update, :destroy, :current_user_owner?]
+  before_action :set_profile, only: [:show, :edit, :update, :destroy, :current_user_owner?]
   def index
     @profiles = Profile.all
   end
@@ -41,7 +41,11 @@ class ProfilesController < UsersController
   
   private
   def set_profile
-    @profile = Profile.find(params[:id])
+    @profile = @user.profile
+  end
+
+  def set_user
+    @user = User.find(params[:user_id])
   end
   
   def profile_params

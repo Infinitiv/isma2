@@ -28,7 +28,7 @@ Isma2::Application.routes.draw do
   resources :divisions
 
   resources :users do
-    resources :profiles
+    resource :profiles
   end
   
   # The priority is based upon order of creation: first created -> highest priority.
@@ -45,7 +45,7 @@ Isma2::Application.routes.draw do
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
-  get 'attachments/:id/minify_img' => 'images#minify_img', :as => :minify_img
+  get 'articles/:id/attachments/:id/minify_img' => 'images#minify_img', :as => :minify_img
   
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products

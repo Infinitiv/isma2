@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   has_many :articles
   has_many :comments
   has_many :attachments
-  has_many :groups_users
+  has_many :groups_users, :dependent => :destroy
   has_many :groups, :through => :groups_users
   has_many :posts
   has_many :divisions, :through => :posts
@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
             :length => { :maximum => 50 }, 
             :uniqueness => true
   validates :password, :confirmation => true,
-	    :presence => true
+	          :presence => true
   validates :password_confirmation, :presence => true
   has_secure_password
 end
